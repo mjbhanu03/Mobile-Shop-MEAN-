@@ -17,7 +17,7 @@ mongoose.connect('mongodb://localhost:27017/mobile_shop', {
 
 //  For allowing cors
 app.use(cors({
-    methods: ['GET', 'POST'],       // Only allow certain HTTP methods
+    methods: ['GET', 'POST', 'DELETE', 'PUT'],       // Only allow certain HTTP methods
     allowedHeaders: ['Content-Type'], // Only allow certain headers
     origin: '*', // Restrict access to a specific origin
 }));

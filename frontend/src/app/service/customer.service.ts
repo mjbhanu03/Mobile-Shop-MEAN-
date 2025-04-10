@@ -12,4 +12,16 @@ export class CustomerService {
   getCustomer() {
     return this.http.get<any>(this.apiUrl)
   }
+
+  addCustomer(customer: any){
+    return this.http.post(`${this.apiUrl}/add`, customer)
+  }
+
+  deleteCustomer(id: string){
+    return this.http.delete(`${this.apiUrl}/delete/${id}`)
+  }
+
+  updateCustomer(id: string, customer: any){
+    return this.http.put(`${this.apiUrl}/update/${id}`, customer)
+  }
 }

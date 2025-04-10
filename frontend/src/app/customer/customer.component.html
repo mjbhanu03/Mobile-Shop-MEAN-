@@ -1,34 +1,47 @@
 <a href='/'>Go to Home Page</a>
+<h2>Add Customers</h2>
+<form (ngSubmit) = 'addCustomer()' style="display: flex; flex-direction: row; gap: 10px;">
+  <input type="text" name="name" [(ngModel)]="customer.name" placeholder="Enter Name:">
+  <input type="text" name="address" [(ngModel)]="customer.address" placeholder="Enter Address:">
+  <input type="number" name="number" [(ngModel)]="customer.number" placeholder="Enter Number:">
+  <input type="email" name="email" [(ngModel)]="customer.email" placeholder="Enter Email:">
+  <button type="submit" style="background-color: blue; color: white; padding: 4px 12px;">Add</button>
+</form>
 
 <h2>Customer List</h2>
 <table border="1" >
 
-  <tr style="padding: 8px 12px;">
-    <th>Name</th>
-    <th>Address</th>
-    <th>Number</th>
-    <th>Email</th>
-    <th colspan="2">Action</th>
-  </tr>
+  <thead>
+    <tr style="padding: 8px 12px;">
+      <th>Name</th>
+      <th>Address</th>
+      <th>Number</th>
+      <th>Email</th>
+      <th colspan="2">Action</th>
+    </tr>
+  </thead>
 
-  <tr *ngFor="let customer of customers" style="padding: 8px 12px;">
-    <td style="padding: 8px 12px;">
-      {{ customer.name }}
-    </td >
-    <td style="padding: 8px 12px;">
-      {{ customer.address }}
-    </td>
-    <td style="padding: 8px 12px;">
-      {{ customer.number }}
-    </td>
-    <td style="padding: 8px 12px;">
-      {{ customer.email }}
-    </td>
-    <td style="padding: 8px 12px;">
-      <a href="#" style="color: blue; text-decoration: none;">Edit</a>
-    </td>
-    <td style="padding: 8px 12px;">
-      <a href="#" style="color: red; text-decoration: none;">Delete</a>
-    </td>
-  </tr>
+  <tbody>
+    <tr *ngFor="let customer of customers" style="padding: 8px 12px;">
+      <td style="padding: 8px 12px;">
+        {{ customer.name }}
+      </td >
+      <td style="padding: 8px 12px;">
+        {{ customer.address }}
+      </td>
+      <td style="padding: 8px 12px;">
+        {{ customer.number }}
+      </td>
+      <td style="padding: 8px 12px;">
+        {{ customer.email }}
+      </td>
+      <td style="padding: 8px 12px;">
+        <a (click)="updateCustomer(customer._id, customer)" style="color: blue; text-decoration: none; cursor: pointer;">Edit</a>
+      </td>
+        <td style="padding: 8px 12px;">
+          <a (click)="deleteCustomer(customer._id)" style="color: red; text-decoration: none; cursor: pointer;">Delete</a>
+        </td>
+    </tr>
+  </tbody>
+
 </table>
