@@ -2,12 +2,13 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
+const customer = require('./routes/customer.routes')
 
 const PORT = 3000;
 
 app.use(express.json());
 
-mongoose.connect('mongodb://localhost:27017/{databasename}', {
+mongoose.connect('mongodb://localhost:27017/mobile_shop', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => console.log('Connected to MongoDB'))
@@ -21,6 +22,7 @@ app.use(cors({
     origin: '*', // Restrict access to a specific origin
 }));
 
+app.use('/customer', customer);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
