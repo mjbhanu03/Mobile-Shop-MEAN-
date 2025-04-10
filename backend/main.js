@@ -3,6 +3,7 @@ const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
 const customer = require('./routes/customer.routes')
+const sellorder = require('./routes/sellorder.routes')
 
 const PORT = 3000;
 
@@ -23,6 +24,7 @@ app.use(cors({
 }));
 
 app.use('/customer', customer);
+app.use('/sellorder', sellorder);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

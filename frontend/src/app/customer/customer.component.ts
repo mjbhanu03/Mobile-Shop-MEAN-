@@ -3,7 +3,7 @@ import { CustomerService } from '../service/customer.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+  
 @Component({
   selector: 'app-customer',
   standalone: true,
