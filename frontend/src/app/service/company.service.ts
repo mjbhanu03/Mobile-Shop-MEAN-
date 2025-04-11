@@ -11,6 +11,10 @@ export class CompanyTableService {
     return this.http.get(this.apiUrl);
   }
 
+  search(name: any){
+    return this.http.get(`${this.apiUrl}/${name}`)
+  }
+
   addCompany(company: any) {
     return this.http.post(`${this.apiUrl}/add`, company);
   }

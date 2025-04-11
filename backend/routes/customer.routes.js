@@ -8,6 +8,11 @@ router.get('', async (req, res) => {
   res.json(customers);
 })
 
+router.get('/:name', async (req, res)=>{
+  const companies = await Company.find({companyName: {$regex: req.params.name, $options: 'i'}})
+  res.json(companies)
+})
+
 router.post('/add', async (req, res)=> {
   const customer = new Customer(req.body);
   await customer.save()

@@ -40,6 +40,15 @@
   </form>
 
   <h2 class="text-2xl font-bold mb-2 text-gray-800">Customer List</h2>
+  <div class="w-full flex justify-end">
+    <form (ngSubmit)="search(searchInput.value)" class="">
+      <label for="search">Search:</label>
+      <div class="space-x-3 flex">
+        <input type="text" #searchInput placeholder="Enter Company Name:">
+        <button type="submit">Search</button>
+      </div>
+    </form>
+  </div>
 
   <div class="overflow-auto rounded-md">
     <table class="w-full border border-gray-300 text-sm text-left">
