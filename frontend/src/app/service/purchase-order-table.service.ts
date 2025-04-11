@@ -23,4 +23,16 @@ export class PurchaseOrderTableService {
   delete(id:string){
     return this.http.delete(`${this.apiurl}/${id}`);
   }
+
+  addPurchase(data: any){
+    return this.http.post(`${this.apiUrl}/add`, data)
+  }
+
+  deletePurchase(id:any){
+    return this.http.delete(`${this.apiUrl}/delete/${id}`)
+  }
+
+  updatePurchase(id: any, data: any){
+    return this.http.put(`${this.apiUrl}/update/${id}`, data)
+  }
 }

@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+<div class="min-h-screen bg-gray-50 p-4 text-sm font-inter">
+  <!-- Navigation -->
+  <div class="mb-4">
+    <a href="/" class="text-blue-500 hover:text-blue-700 hover:underline transition">← Home</a>
+  </div>
+=======
 <a href="/">Go to Home Page</a>
 <div class="container">
   <h1> purchase Data</h1>
@@ -23,20 +30,79 @@
 
       <button type="submit">{{editing ? 'updated' : 'add'}}last</button>
   </form>
+>>>>>>> 97deeac2618ee734410afb4456030eab0469d709
 
-<h2>Purchase Order List</h2>
+  <!-- Add Form -->
+  <div class="w-100 bg-white rounded-lg shadow p-4 max-w-xl mx-auto space-y-3">
+    <h2 class="text-xl font-semibold text-gray-800">Add Purchase Order</h2>
+    <form (ngSubmit)="savePurchase()" class="grid grid-cols-1 gap-2">
+      <input type="number" name="purchaseOrder" [(ngModel)]="purchaseOrder.purchaseOrder" placeholder="Purchase Order No."
+        class="p-2 border rounded focus:ring-2 ring-blue-400 focus:outline-none" />
 
-<table border="1">
-  <thead>
-    <tr>
-      <th>Purchase Order</th>
-      <th>Order Date</th>
-      <th>Supplier Id</th>
-      <th>Total Amount</th>
-      <th colspan="2">Actions</th>
-    </tr>
-  </thead>
+      <input type="date" name="orderDate" [(ngModel)]="purchaseOrder.orderDate"
+        class="p-2 border rounded focus:ring-2 ring-blue-400 focus:outline-none" />
 
+<<<<<<< HEAD
+      <input type="number" name="supplierId" [(ngModel)]="purchaseOrder.supplierId" placeholder="Supplier ID"
+        class="p-2 border rounded focus:ring-2 ring-blue-400 focus:outline-none" />
+
+      <input type="number" name="totalAmount" [(ngModel)]="purchaseOrder.totalAmount" placeholder="Total Amount"
+        class="p-2 border rounded focus:ring-2 ring-blue-400 focus:outline-none" />
+
+        <button type="submit" class="w-30 relative overflow-hidden bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white font-semibold py-2 px-4 text-sm rounded-md hover:brightness-110">
+          <span class="relative z-10">Submit</span>
+          <span class="shine absolute top-0 left-[-100%] w-full h-full bg-white/30 transform rotate-12 pointer-events-none group-hover:left-full transition-all duration-1000 ease-in-out"></span>
+        </button>
+
+        <style>
+          button:hover .shine {
+            animation: shine 1s forwards;
+          }
+
+          @keyframes shine {
+            0% {
+              left: -100%;
+            }
+            100% {
+              left: 100%;
+            }
+          }
+        </style>
+
+    </form>
+  </div>
+
+  <!-- Purchase Orders Table -->
+  <div class="bg-white shadow rounded-lg p-4 mt-6 max-w-6xl mx-auto overflow-auto">
+    <h2 class="text-xl font-semibold text-gray-800 mb-2">Purchase Orders</h2>
+    <table class="w-full text-left border-collapse text-sm">
+      <thead>
+        <tr class="bg-gray-100">
+          <th class="p-2">Order</th>
+          <th class="p-2">Date</th>
+          <th class="p-2">Supplier</th>
+          <th class="p-2">Amount</th>
+          <th class="p-2 text-center" colspan="2">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let purchaseOrder of purchaseOrders" class="border-t hover:bg-gray-50 transition">
+          <td class="p-2">{{ purchaseOrder.purchaseOrder }}</td>
+          <td class="p-2">{{ purchaseOrder.orderDate }}</td>
+          <td class="p-2">{{ purchaseOrder.supplierId }}</td>
+          <td class="p-2">{{ purchaseOrder.totalAmount }}</td>
+          <td class="p-2 text-blue-500 cursor-pointer hover:underline text-center">
+            <a (click)="updateOrder(purchaseOrder._id, purchaseOrder)">Edit</a>
+          </td>
+          <td class="p-2 text-red-500 cursor-pointer hover:underline text-center">
+            <a (click)="deleteOrder(purchaseOrder._id)">Delete</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+=======
   <tbody>
     <tr *ngFor="let purchase of purchases">
       <td>{{purchase.purchase_id}}</td>
@@ -53,3 +119,4 @@
     </tr>
   </tbody>
 </table>
+>>>>>>> 97deeac2618ee734410afb4456030eab0469d709
