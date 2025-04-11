@@ -1,47 +1,62 @@
-<a href='/'>Go to Home Page</a>
-<h2>Add Customers</h2>
-<form (ngSubmit) = 'addCustomer()' style="display: flex; flex-direction: row; gap: 10px;">
-  <input type="text" name="name" [(ngModel)]="customer.name" placeholder="Enter Name:">
-  <input type="text" name="address" [(ngModel)]="customer.address" placeholder="Enter Address:">
-  <input type="number" name="number" [(ngModel)]="customer.number" placeholder="Enter Number:">
-  <input type="email" name="email" [(ngModel)]="customer.email" placeholder="Enter Email:">
-  <button type="submit" style="background-color: blue; color: white; padding: 4px 12px;">Add</button>
+<a href="/" class="text-blue-600 underline text-sm">Go to Home Page</a>
+
+<h2 class="text-2xl font-bold my-4">Add Customers</h2>
+
+<form (ngSubmit)="addCustomer()" class="flex flex-wrap gap-4 items-end mb-6">
+  <input type="text" name="name" [(ngModel)]="customer.name" placeholder="Enter Name"
+    class="px-4 py-2 border border-gray-300 rounded-md w-48">
+  <input type="text" name="address" [(ngModel)]="customer.address" placeholder="Enter Address"
+    class="px-4 py-2 border border-gray-300 rounded-md w-48">
+  <input type="number" name="number" [(ngModel)]="customer.number" placeholder="Enter Number"
+    class="px-4 py-2 border border-gray-300 rounded-md w-48">
+  <input type="email" name="email" [(ngModel)]="customer.email" placeholder="Enter Email"
+    class="px-4 py-2 border border-gray-300 rounded-md w-48">
+
+  <!-- Gradient button with hover shine -->
+  <button type="submit"
+  class="relative overflow-hidden bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white font-semibold py-2 px-4 text-sm rounded-md group hover:brightness-110 transition duration-300 w-32">
+  <span class="relative z-10">Add</span>
+  <span
+    class="absolute top-0 left-[-100%] w-full h-full bg-white/30 transform rotate-12 pointer-events-none group-hover:animate-shine"></span>
+</button>
+
+<style>
+  @keyframes shine {
+    0% {
+      left: -100%;
+    }
+    100% {
+      left: 100%;
+    }
+  }
+
+  .animate-shine {
+    animation: shine 0.8s ease-in-out forwards;
+  }
+</style>
+
 </form>
 
-<h2>Customer List</h2>
-<table border="1" >
+<h2 class="text-2xl font-bold mb-2">Customer List</h2>
 
-  <thead>
-    <tr style="padding: 8px 12px;">
-      <th>Name</th>
-      <th>Address</th>
-      <th>Number</th>
-      <th>Email</th>
-      <th colspan="2">Action</th>
+<table class="w-full border border-gray-300 rounded-md text-sm">
+  <thead class="bg-gray-100">
+    <tr>
+      <th class="px-4 py-2 text-left">Name</th>
+      <th class="px-4 py-2 text-left">Address</th>
+      <th class="px-4 py-2 text-left">Number</th>
+      <th class="px-4 py-2 text-left">Email</th>
+      <th class="px-4 py-2 text-center" colspan="2">Action</th>
     </tr>
   </thead>
-
   <tbody>
-    <tr *ngFor="let customer of customers" style="padding: 8px 12px;">
-      <td style="padding: 8px 12px;">
-        {{ customer.name }}
-      </td >
-      <td style="padding: 8px 12px;">
-        {{ customer.address }}
-      </td>
-      <td style="padding: 8px 12px;">
-        {{ customer.number }}
-      </td>
-      <td style="padding: 8px 12px;">
-        {{ customer.email }}
-      </td>
-      <td style="padding: 8px 12px;">
-        <a (click)="updateCustomer(customer._id, customer)" style="color: blue; text-decoration: none; cursor: pointer;">Edit</a>
-      </td>
-        <td style="padding: 8px 12px;">
-          <a (click)="deleteCustomer(customer._id)" style="color: red; text-decoration: none; cursor: pointer;">Delete</a>
-        </td>
+    <tr *ngFor="let customer of customers" class="border-t">
+      <td class="px-4 py-2">{{ customer.name }}</td>
+      <td class="px-4 py-2">{{ customer.address }}</td>
+      <td class="px-4 py-2">{{ customer.number }}</td>
+      <td class="px-4 py-2">{{ customer.email }}</td>
+      <td class="px-4 py-2 text-blue-600 cursor-pointer hover:underline" (click)="updateCustomer(customer._id, customer)">Edit</td>
+      <td class="px-4 py-2 text-red-500 cursor-pointer hover:underline" (click)="deleteCustomer(customer._id)">Delete</td>
     </tr>
   </tbody>
-
 </table>
