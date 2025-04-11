@@ -1,2 +1,43 @@
 <p>item works!</p>
 <a href="/">Go to Home Page</a>
+
+<div class="container">
+    <h1> Items Data</h1>
+    <br>
+    <form (ngSubmit)="saveitem()">
+        
+        <label>Item ID:</label>
+        <input type="number" [(ngModel)]="item.item_id" name="id">
+        <br>
+        
+        <label>Item Name:</label>
+        <input type="text" [(ngModel)]="item.item_name" name="name">
+        <br>
+        <label>Quantity:</label>
+        <input type="number" [(ngModel)]="item.quantity" name="quantity">
+        <br>
+        <label>price:</label>
+        <input type="number" [(ngModel)]="item.price" name="price">
+        <br>
+        <label>Company ID:</label>
+        <input type="number" [(ngModel)]="item.company_id" name="companyId">
+        <br>
+        <label>purchase_id:</label>
+        <input type="number" [(ngModel)]="item.purchase_id" name="purchaseId">
+        <br>
+        <label>Description:</label>
+        <input type="text" [(ngModel)]="item.description" name="description">
+        <br>
+
+
+        <button type="submit">{{editing ? 'updated' : 'add'}}last</button>
+    </form>
+
+    <ul>
+        <li *ngFor="let item of items">
+            {{item.item_id}}-{{item.item_name}}-{{item.quantity}}-{{item.price}}-{{item.company_id}}-{{item.purchase_id}}-{{item.description}}
+            <button (click)="updateitem(item)">Edit</button>
+            <button (click)="deleteitem(item._id)">Delete</button>
+        </li>
+    </ul>
+</div>

@@ -1,8 +1,36 @@
+<<<<<<< HEAD
 <div class="min-h-screen bg-gray-50 p-4 text-sm font-inter">
   <!-- Navigation -->
   <div class="mb-4">
     <a href="/" class="text-blue-500 hover:text-blue-700 hover:underline transition">← Home</a>
   </div>
+=======
+<a href="/">Go to Home Page</a>
+<div class="container">
+  <h1> purchase Data</h1>
+  <br>
+  <form (ngSubmit)="savepurchase()">
+      
+      <label>purchase ID:</label>
+      <input type="number" [(ngModel)]="purchase.purchase_id" name="purchase_id">
+      <br>
+      
+      <label>supplier ID:</label>
+      <input type="number" [(ngModel)]="purchase.supplier_id" name="supplier_id">
+      <br>
+      <label>order_date:</label>
+      <input type="number" [(ngModel)]="purchase.order_date" name="order_date">
+      <br>
+      <label>quantity:</label>
+      <input type="number" [(ngModel)]="purchase.quantity" name="quantity">
+      <br>
+      <label>Total Amount:</label>
+      <input type="number" [(ngModel)]="purchase.total_amt" name="total_amt">
+      <br>
+
+      <button type="submit">{{editing ? 'updated' : 'add'}}last</button>
+  </form>
+>>>>>>> 97deeac2618ee734410afb4456030eab0469d709
 
   <!-- Add Form -->
   <div class="w-100 bg-white rounded-lg shadow p-4 max-w-xl mx-auto space-y-3">
@@ -14,6 +42,7 @@
       <input type="date" name="orderDate" [(ngModel)]="purchaseOrder.orderDate"
         class="p-2 border rounded focus:ring-2 ring-blue-400 focus:outline-none" />
 
+<<<<<<< HEAD
       <input type="number" name="supplierId" [(ngModel)]="purchaseOrder.supplierId" placeholder="Supplier ID"
         class="p-2 border rounded focus:ring-2 ring-blue-400 focus:outline-none" />
 
@@ -73,3 +102,21 @@
     </table>
   </div>
 </div>
+=======
+  <tbody>
+    <tr *ngFor="let purchase of purchases">
+      <td>{{purchase.purchase_id}}</td>
+      <td>{{purchase.supplier_id}}</td>
+      <td>{{purchase.order_date}}</td>
+      <td>{{purchase.quantity}}</td>
+      <td>{{purchase.total_amt}}</td>
+      <td style="padding: 8px 12px;">
+        <a (click)="updatepurchase(purchase)" style="color: blue; text-decoration: none; cursor: pointer;">Edit</a>
+      </td>
+        <td style="padding: 8px 12px;">
+          <a (click)="deletepuchase(purchase._id)" style="color: red; text-decoration: none; cursor: pointer;">Delete</a>
+        </td>
+    </tr>
+  </tbody>
+</table>
+>>>>>>> 97deeac2618ee734410afb4456030eab0469d709
