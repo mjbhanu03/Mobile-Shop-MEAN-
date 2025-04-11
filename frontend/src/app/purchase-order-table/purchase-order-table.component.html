@@ -1,4 +1,28 @@
 <a href="/">Go to Home Page</a>
+<div class="container">
+  <h1> purchase Data</h1>
+  <br>
+  <form (ngSubmit)="savepurchase()">
+      
+      <label>purchase ID:</label>
+      <input type="number" [(ngModel)]="purchase.purchase_id" name="purchase_id">
+      <br>
+      
+      <label>supplier ID:</label>
+      <input type="number" [(ngModel)]="purchase.supplier_id" name="supplier_id">
+      <br>
+      <label>order_date:</label>
+      <input type="number" [(ngModel)]="purchase.order_date" name="order_date">
+      <br>
+      <label>quantity:</label>
+      <input type="number" [(ngModel)]="purchase.quantity" name="quantity">
+      <br>
+      <label>Total Amount:</label>
+      <input type="number" [(ngModel)]="purchase.total_amt" name="total_amt">
+      <br>
+
+      <button type="submit">{{editing ? 'updated' : 'add'}}last</button>
+  </form>
 
 <h2>Purchase Order List</h2>
 
@@ -14,13 +38,18 @@
   </thead>
 
   <tbody>
-    <tr *ngFor="let purchaseOrder of purchaseOrders">
-      <td>{{ purchaseOrder.purchaseOrder }}</td>
-      <td>{{ purchaseOrder.orderDate }}</td>
-      <td>{{ purchaseOrder.supplierId }}</td>
-      <td>{{ purchaseOrder.totalAmount }}</td>
-      <td> <a href="#">Edit</a> </td>
-      <td> <a href="#">Delete</a> </td>
+    <tr *ngFor="let purchase of purchases">
+      <td>{{purchase.purchase_id}}</td>
+      <td>{{purchase.supplier_id}}</td>
+      <td>{{purchase.order_date}}</td>
+      <td>{{purchase.quantity}}</td>
+      <td>{{purchase.total_amt}}</td>
+      <td style="padding: 8px 12px;">
+        <a (click)="updatepurchase(purchase)" style="color: blue; text-decoration: none; cursor: pointer;">Edit</a>
+      </td>
+        <td style="padding: 8px 12px;">
+          <a (click)="deletepuchase(purchase._id)" style="color: red; text-decoration: none; cursor: pointer;">Delete</a>
+        </td>
     </tr>
   </tbody>
 </table>
