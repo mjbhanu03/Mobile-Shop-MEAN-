@@ -3,7 +3,7 @@ import { CustomerService } from '../service/customer.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-  
+
 @Component({
   selector: 'app-customer',
   standalone: true,
@@ -42,6 +42,18 @@ export class CustomerComponent implements OnInit{
  getCustomer(){
   this.customerService.getCustomer().subscribe(data => this.customers = data)
  }
+
+ search(name:any){
+  if(name == ''){
+    this.getCustomer()
+  }else{
+    this.customers = []
+    this.customerService.search(name).subscribe((data:any)=>{
+      this.customers = data;
+    })
+  }
+}
+
 
  addCustomer(){
 

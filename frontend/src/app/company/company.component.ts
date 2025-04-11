@@ -1,4 +1,4 @@
-import { NgFor, NgIf } from '@angular/common'; 
+import { NgFor, NgIf } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -7,7 +7,7 @@ import { CompanyTableService } from '../service/company.service';
 @Component({
   selector: 'app-company-table',
   standalone: true,
-  imports: [HttpClientModule, FormsModule, NgFor, NgIf], 
+  imports: [HttpClientModule, FormsModule, NgFor, NgIf],
   templateUrl:'company.component.html',
   styleUrls: ['company.component.scss'],
   providers: [CompanyTableService],
@@ -28,14 +28,14 @@ export class CompanyComponent implements OnInit {
 
   constructor(private companyService: CompanyTableService) {}
 
-  ngOnInit(): 
-  void 
+  ngOnInit():
+  void
   {
     this.loadCompanies();
   }
 
-  loadCompanies(): 
-  void 
+  loadCompanies():
+  void
   {
     this.companyService.getCompanies().subscribe({
       next: (data: any) => this.companies = data,
@@ -43,9 +43,20 @@ export class CompanyComponent implements OnInit {
     });
   }
 
+  search(name:any){
+    if(name == ''){
+      this.loadCompanies()
+    }else{
+      this.companies = []
+      this.companyService.search(name).subscribe((data:any)=>{
+        this.companies = data;
+      })
+    }
+  }
+
   saveCompany():
    void {
-    if (this.editing && this.editId !== null) 
+    if (this.editing && this.editId !== null)
       {
       this.companyService.updateCompany(this.editId, this.company).subscribe({
         next: () => {
@@ -55,7 +66,7 @@ export class CompanyComponent implements OnInit {
         error: (err) => console.error('Error updating company:', err)
       });
     }
-     else 
+     else
      {
       this.companyService.addCompany(this.company).subscribe({
         next: () => {
@@ -73,7 +84,7 @@ export class CompanyComponent implements OnInit {
     this.editing = true;
     this.editId = id;
   }
-  deleteCompany(id: string): 
+  deleteCompany(id: string):
   void
    {
     this.companyService.deleteCompany(id).subscribe({
@@ -82,10 +93,10 @@ export class CompanyComponent implements OnInit {
     });
   }
 
-  resetForm(): 
-  void 
+  resetForm():
+  void
   {
-    this.company = 
+    this.company =
     {
       companyId: '',
       companyName: '',

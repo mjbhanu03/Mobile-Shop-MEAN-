@@ -1,10 +1,9 @@
 <div class="min-h-screen bg-gray-50 p-4 text-sm font-inter">
-  <!-- Navigation -->
+
   <div class="mb-4">
     <a href="/" class="text-blue-500 hover:text-blue-700 hover:underline transition">← Home</a>
   </div>
 
-  <!-- Add Form -->
   <div class="w-100 bg-white rounded-lg shadow p-4 max-w-xl mx-auto space-y-3">
     <h2 class="text-xl font-semibold text-gray-800">Add Company</h2>
     <form (ngSubmit)="saveCompany()" class="grid grid-cols-1 gap-2">
@@ -46,8 +45,20 @@
   </div>
 
   <!-- Table -->
+
   <div class="bg-white shadow rounded-lg p-4 mt-6 max-w-6xl mx-auto overflow-auto">
     <h2 class="text-xl font-semibold text-gray-800 mb-2">Company List</h2>
+
+      <div class="w-full flex justify-end">
+        <form (ngSubmit)="search(searchInput.value)" class="">
+          <label for="search">Search:</label>
+          <div class="space-x-3 flex">
+            <input type="text" #searchInput placeholder="Enter Company Name:">
+            <button type="submit">Search</button>
+          </div>
+        </form>
+      </div>
+
     <table class="w-full text-left border-collapse text-sm">
       <thead>
         <tr class="bg-gray-100">

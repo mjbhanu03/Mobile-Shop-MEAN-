@@ -13,6 +13,10 @@ export class CustomerService {
     return this.http.get<any>(this.apiUrl)
   }
 
+  search(name: any){
+    return this.http.get(`${this.apiUrl}/${name}`)
+  }
+
   addCustomer(customer: any){
     return this.http.post(`${this.apiUrl}/add`, customer)
   }
