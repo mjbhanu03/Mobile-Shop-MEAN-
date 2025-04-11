@@ -1,2 +1,26 @@
-<p>purchase-order-table works!</p>
 <a href="/">Go to Home Page</a>
+
+<h2>Purchase Order List</h2>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>Purchase Order</th>
+      <th>Order Date</th>
+      <th>Supplier Id</th>
+      <th>Total Amount</th>
+      <th colspan="2">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let purchaseOrder of purchaseOrders">
+      <td>{{ purchaseOrder.purchaseOrder }}</td>
+      <td>{{ purchaseOrder.orderDate }}</td>
+      <td>{{ purchaseOrder.supplierId }}</td>
+      <td>{{ purchaseOrder.totalAmount }}</td>
+      <td> <a href="#">Edit</a> </td>
+      <td> <a href="#">Delete</a> </td>
+    </tr>
+  </tbody>
+</table>
