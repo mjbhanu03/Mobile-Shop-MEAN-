@@ -27,7 +27,7 @@ app.use(cors({
 app.use('/customer', customer);
 app.use('/sellorder', sellorder);
 app.use('/purchaseorder', purchaseOrder)
-
+app.use('/company', require('./routes/company.routes'));
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
