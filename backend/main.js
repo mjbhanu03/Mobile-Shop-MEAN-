@@ -17,16 +17,17 @@ mongoose.connect('mongodb://localhost:27017/mobile_shop', {
     .catch(err => console.error('Failed to connect to MongoDB', err));
 
 
+    
 //  For allowing cors
 app.use(cors({
     methods: ['GET', 'POST', 'DELETE', 'PUT'],       // Only allow certain HTTP methods
     allowedHeaders: ['Content-Type'], // Only allow certain headers
     origin: '*', // Restrict access to a specific origin
 }));
-
+app.use('/api/items',require('./routes/item.routes'));
+app.use('/api/purchases',require('./routes/purchase.routes'));
 app.use('/customer', customer);
 app.use('/sellorder', sellorder);
-app.use('/purchaseorder', purchaseOrder)
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
