@@ -25,7 +25,7 @@ app.use(cors({
     origin: '*', // Restrict access to a specific origin
 }));
 app.use('/api/items',require('./routes/item.routes'));
-app.use('/api/purchases',require('./routes/purchase.routes'));
+app.use('/company',require('./routes/company.routes'));
 app.use('/customer', customer);
 app.use('/sellorder', sellorder);
 app.use('/purchaseorder', purchaseOrder)

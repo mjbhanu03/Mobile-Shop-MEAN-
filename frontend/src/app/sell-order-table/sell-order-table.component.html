@@ -1,48 +1,69 @@
+<a href="/" class="text-blue-600 underline text-sm">Go to Home Page</a>
 
-  <a href="/">Go to Home Page</a>
+<h2 class="text-2xl font-bold my-4">Sell Order Form</h2>
 
-  <div>
-    <h2>sellorder Form</h2>
-    <form (ngSubmit)="savesellorder()" #form="ngForm">
-      <input type="date" name="date" [(ngModel)]="sellorder.orderDate" placeholder="Enter Date" required />
-      <input type="number" name="itemId" [(ngModel)]="sellorder.itemId" placeholder="Enter Item Id:" required />
-      <input type="number" name="customerId" [(ngModel)]="sellorder.customerId" placeholder="Enter Customer Id" required />
-      <input type="text" name="shippingAddress" [(ngModel)]="sellorder.shippingAddress" placeholder="Enter Shipping Address" required />
-      <input type="number" name="quantity" [(ngModel)]="sellorder.quantity" placeholder="Enter Quantity" required />
-      <input type="number" name="totalAmount" [(ngModel)]="sellorder.totalAmount" placeholder="Enter Total Amount" required />
+<form (ngSubmit)="savesellorder()" #form="ngForm" class="flex flex-wrap gap-4 items-end mb-6">
+  <input type="date" name="date" [(ngModel)]="sellorder.orderDate" required
+    class="px-4 py-2 border border-gray-300 rounded-md w-48" placeholder="Enter Date" />
+  <input type="number" name="itemId" [(ngModel)]="sellorder.itemId" required
+    class="px-4 py-2 border border-gray-300 rounded-md w-48" placeholder="Enter Item Id" />
+  <input type="number" name="customerId" [(ngModel)]="sellorder.customerId" required
+    class="px-4 py-2 border border-gray-300 rounded-md w-48" placeholder="Enter Customer Id" />
+  <input type="text" name="shippingAddress" [(ngModel)]="sellorder.shippingAddress" required
+    class="px-4 py-2 border border-gray-300 rounded-md w-48" placeholder="Enter Shipping Address" />
+  <input type="number" name="quantity" [(ngModel)]="sellorder.quantity" required
+    class="px-4 py-2 border border-gray-300 rounded-md w-48" placeholder="Enter Quantity" />
+  <input type="number" name="totalAmount" [(ngModel)]="sellorder.totalAmount" required
+    class="px-4 py-2 border border-gray-300 rounded-md w-48" placeholder="Enter Total Amount" />
 
-      <button type="submit">Save</button>
-    </form>
+  <button type="submit"
+    class="relative overflow-hidden bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white font-semibold py-2 px-4 text-sm rounded-md group hover:brightness-110 transition duration-300 w-32">
+    <span class="relative z-10">Save</span>
+    <span
+      class="absolute top-0 left-[-100%] w-full h-full bg-white/30 transform rotate-12 pointer-events-none group-hover:animate-shine"></span>
+  </button>
 
+  <style>
+    @keyframes shine {
+      0% {
+        left: -100%;
+      }
 
+      100% {
+        left: 100%;
+      }
+    }
 
-    <!-- <input type="text" [(ngModel)]="searchQuery" (input)="searchsellorder()" placeholder="Search by name..." /> -->
-  </div>
+    .animate-shine {
+      animation: shine 0.8s ease-in-out forwards;
+    }
+  </style>
+</form>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Item Id</th>
-        <th>Customer Id</th>
-        <th>Shipping Address</th>
-        <th>Quantity</th>
-        <th>Total Amount</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let sellorder of sellorders">
-        <td>{{ sellorder.orderDate }}</td>
-        <td>{{ sellorder.itemId }}</td>
-        <td>{{ sellorder.customerId }}</td>
-        <td>{{ sellorder.shippingAddress }}</td>
-        <td>{{ sellorder.quantity }}</td>
-        <td>{{ sellorder.totalAmount }}</td>
-        <td>
-          <a (click)="editsellorder(sellorder._id, sellorder)">Edit</a>
-          <a (click)="deletesellorder(sellorder._id)">Delete</a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<h2 class="text-2xl font-bold mb-2">Sell Orders List</h2>
+
+<table class="w-full border border-gray-300 rounded-md text-sm">
+  <thead class="bg-gray-100">
+    <tr>
+      <th class="px-4 py-2 text-left">Date</th>
+      <th class="px-4 py-2 text-left">Item Id</th>
+      <th class="px-4 py-2 text-left">Customer Id</th>
+      <th class="px-4 py-2 text-left">Shipping Address</th>
+      <th class="px-4 py-2 text-left">Quantity</th>
+      <th class="px-4 py-2 text-left">Total Amount</th>
+      <th class="px-4 py-2 text-center" colspan="2">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let sellorder of sellorders" class="border-t">
+      <td class="px-4 py-2">{{ sellorder.orderDate }}</td>
+      <td class="px-4 py-2">{{ sellorder.itemId }}</td>
+      <td class="px-4 py-2">{{ sellorder.customerId }}</td>
+      <td class="px-4 py-2">{{ sellorder.shippingAddress }}</td>
+      <td class="px-4 py-2">{{ sellorder.quantity }}</td>
+      <td class="px-4 py-2">{{ sellorder.totalAmount }}</td>
+      <td class="px-4 py-2 text-blue-600 cursor-pointer hover:underline" (click)="editsellorder(sellorder._id, sellorder)">Edit</td>
+      <td class="px-4 py-2 text-red-500 cursor-pointer hover:underline" (click)="deletesellorder(sellorder._id)">Delete</td>
+    </tr>
+  </tbody>
+</table>

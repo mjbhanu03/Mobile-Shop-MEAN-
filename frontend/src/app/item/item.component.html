@@ -1,43 +1,73 @@
-<p>item works!</p>
-<a href="/">Go to Home Page</a>
+<a href="/" class="text-blue-600 underline text-sm">Go to Home Page</a>
 
-<div class="container">
-    <h1> Items Data</h1>
-    <br>
-    <form (ngSubmit)="saveitem()">
-        
-        <label>Item ID:</label>
-        <input type="number" [(ngModel)]="item.item_id" name="id">
-        <br>
-        
-        <label>Item Name:</label>
-        <input type="text" [(ngModel)]="item.item_name" name="name">
-        <br>
-        <label>Quantity:</label>
-        <input type="number" [(ngModel)]="item.quantity" name="quantity">
-        <br>
-        <label>price:</label>
-        <input type="number" [(ngModel)]="item.price" name="price">
-        <br>
-        <label>Company ID:</label>
-        <input type="number" [(ngModel)]="item.company_id" name="companyId">
-        <br>
-        <label>purchase_id:</label>
-        <input type="number" [(ngModel)]="item.purchase_id" name="purchaseId">
-        <br>
-        <label>Description:</label>
-        <input type="text" [(ngModel)]="item.description" name="description">
-        <br>
+<h2 class="text-2xl font-bold my-4">Add Items</h2>
 
+<form (ngSubmit)="saveitem()" class="flex flex-wrap gap-4 items-end mb-6">
+  <input type="number" name="id" [(ngModel)]="item.item_id" placeholder="Enter Item ID"
+    class="px-4 py-2 border border-gray-300 rounded-md w-48">
+  <input type="text" name="name" [(ngModel)]="item.item_name" placeholder="Enter Item Name"
+    class="px-4 py-2 border border-gray-300 rounded-md w-48">
+  <input type="number" name="quantity" [(ngModel)]="item.quantity" placeholder="Enter Quantity"
+    class="px-4 py-2 border border-gray-300 rounded-md w-48">
+  <input type="number" name="price" [(ngModel)]="item.price" placeholder="Enter Price"
+    class="px-4 py-2 border border-gray-300 rounded-md w-48">
+  <input type="number" name="companyId" [(ngModel)]="item.company_id" placeholder="Enter Company ID"
+    class="px-4 py-2 border border-gray-300 rounded-md w-48">
+  <input type="number" name="purchaseId" [(ngModel)]="item.purchase_id" placeholder="Enter Purchase ID"
+    class="px-4 py-2 border border-gray-300 rounded-md w-48">
+  <input type="text" name="description" [(ngModel)]="item.description" placeholder="Enter Description"
+    class="px-4 py-2 border border-gray-300 rounded-md w-48">
 
-        <button type="submit">{{editing ? 'updated' : 'add'}}last</button>
-    </form>
+  <button type="submit"
+    class="relative overflow-hidden bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white font-semibold py-2 px-4 text-sm rounded-md group hover:brightness-110 transition duration-300 w-32">
+    <span class="relative z-10">{{ editing ? 'Update' : 'Add' }}</span>
+    <span
+      class="absolute top-0 left-[-100%] w-full h-full bg-white/30 transform rotate-12 pointer-events-none group-hover:animate-shine"></span>
+  </button>
 
-    <ul>
-        <li *ngFor="let item of items">
-            {{item.item_id}}-{{item.item_name}}-{{item.quantity}}-{{item.price}}-{{item.company_id}}-{{item.purchase_id}}-{{item.description}}
-            <button (click)="updateitem(item)">Edit</button>
-            <button (click)="deleteitem(item._id)">Delete</button>
-        </li>
-    </ul>
-</div>
+  <style>
+    @keyframes shine {
+      0% {
+        left: -100%;
+      }
+
+      100% {
+        left: 100%;
+      }
+    }
+
+    .animate-shine {
+      animation: shine 0.8s ease-in-out forwards;
+    }
+  </style>
+</form>
+
+<h2 class="text-2xl font-bold mb-2">Item List</h2>
+
+<table class="w-full border border-gray-300 rounded-md text-sm">
+  <thead class="bg-gray-100">
+    <tr>
+      <th class="px-4 py-2 text-left">Item ID</th>
+      <th class="px-4 py-2 text-left">Name</th>
+      <th class="px-4 py-2 text-left">Qty</th>
+      <th class="px-4 py-2 text-left">Price</th>
+      <th class="px-4 py-2 text-left">Company ID</th>
+      <th class="px-4 py-2 text-left">Purchase ID</th>
+      <th class="px-4 py-2 text-left">Description</th>
+      <th class="px-4 py-2 text-center" colspan="2">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of items" class="border-t">
+      <td class="px-4 py-2">{{ item.item_id }}</td>
+      <td class="px-4 py-2">{{ item.item_name }}</td>
+      <td class="px-4 py-2">{{ item.quantity }}</td>
+      <td class="px-4 py-2">{{ item.price }}</td>
+      <td class="px-4 py-2">{{ item.company_id }}</td>
+      <td class="px-4 py-2">{{ item.purchase_id }}</td>
+      <td class="px-4 py-2">{{ item.description }}</td>
+      <td class="px-4 py-2 text-blue-600 cursor-pointer hover:underline" (click)="updateitem(item)">Edit</td>
+      <td class="px-4 py-2 text-red-500 cursor-pointer hover:underline" (click)="deleteitem(item._id)">Delete</td>
+    </tr>
+  </tbody>
+</table>
