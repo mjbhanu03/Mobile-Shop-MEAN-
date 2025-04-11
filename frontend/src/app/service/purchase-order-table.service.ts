@@ -5,23 +5,11 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class PurchaseOrderTableService {
-  private apiurl="http://localhost:3000/api/purchases"
-  constructor(private http:HttpClient) { }
+  private apiUrl = 'http://localhost:3000/purchaseorder';
+  constructor(private http: HttpClient) { }
 
-  getpurchase(){
-    return this.http.get(this.apiurl);
-  }
-
-  addpurchase(purchase:any){
-    return this.http.post(this.apiurl,purchase);
-  }
-
-  update(id:string,purchase:any){
-    return this.http.put(`${this.apiurl}/${id}`,purchase);
-  }
-
-  delete(id:string){
-    return this.http.delete(`${this.apiurl}/${id}`);
+  getPurchase(){
+    return this.http.get(this.apiUrl)
   }
 
   addPurchase(data: any){
