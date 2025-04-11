@@ -28,6 +28,7 @@ app.use('/api/items',require('./routes/item.routes'));
 app.use('/api/purchases',require('./routes/purchase.routes'));
 app.use('/customer', customer);
 app.use('/sellorder', sellorder);
+app.use('/purchaseorder', purchaseOrder)
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
