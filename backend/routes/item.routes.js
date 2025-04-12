@@ -9,6 +9,11 @@ router.post('/add',async(req,res)=>{
     res.json(item);
 });
 
+router.get('/:name', async (req, res)=>{
+  const items = await Item.find({item_name: {$regex: req.params.name, $options: 'i'}})
+  res.json(items)
+})
+
 router.get('/',async(req,res)=>{
     const items=await Item.find();
     res.json(items);

@@ -46,6 +46,19 @@
   <!-- Purchase Orders Table -->
   <div class="bg-white shadow rounded-lg p-4 mt-6 max-w-6xl mx-auto overflow-auto">
     <h2 class="text-xl font-semibold text-gray-800 mb-2">Purchase Orders</h2>
+
+        <!-- Search Bar -->
+        <div class="w-full flex justify-end mb-2">
+          <form (ngSubmit)="search(searchInput.value)">
+            <label for="search">Search:</label>
+            <div class="space-x-3 flex">
+              <input type="text" #searchInput placeholder="Enter Item Name:" class="border px-2 py-1 rounded" />
+              <button type="submit" class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition">Search</button>
+            </div>
+          </form>
+        </div>
+
+        
     <table class="w-full text-left border-collapse text-sm">
       <thead>
         <tr class="bg-gray-100">

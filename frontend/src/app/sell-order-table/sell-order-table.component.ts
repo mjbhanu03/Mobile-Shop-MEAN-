@@ -38,6 +38,17 @@ export class SellOrderTableComponent implements OnInit {
     });
   }
 
+  search(name:any){
+    if(name == ''){
+      this.loadsellorder()
+    }else{
+      this.sellorders = []
+      this.sellOrderTableService.search(name).subscribe((data:any)=>{
+        this.sellorders = data;
+      })
+    }
+  }
+
   savesellorder() {
     if (this.editing) {
       this.sellOrderTableService.updatesellorder(this.editId, this.sellorder).subscribe(() => {
