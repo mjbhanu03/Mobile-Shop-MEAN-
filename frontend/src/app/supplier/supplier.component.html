@@ -1,2 +1,97 @@
-<p>supplier works!</p>
-<a href="/">Go to Home Page</a>
+<div class="min-h-screen bg-gray-50 p-4 text-sm font-inter">
+
+    <div class="mb-4">
+      <a href="/" class="text-blue-500 hover:text-blue-700 hover:underline transition">← Home</a>
+    </div>
+  
+    <div class="w-100 bg-white rounded-lg shadow p-4 max-w-xl mx-auto space-y-3">
+      <h2 class="text-xl font-semibold text-gray-800">Supplier Data</h2>
+      <form (ngSubmit)="savesupplier()" class="grid grid-cols-1 gap-2">
+
+        <input type="number" name="supplier_id" [(ngModel)]="supplier.supplier_id" placeholder="Enter supplier ID"
+          class="p-2 border rounded focus:ring-2 ring-blue-400 focus:outline-none" />
+  
+        <input type="text" name="supplier_name" [(ngModel)]="supplier.supplier_name" placeholder="Enter supplier name"
+          class="p-2 border rounded focus:ring-2 ring-blue-400 focus:outline-none" />
+  
+        <input type="number" name="contact_info" [(ngModel)]="supplier.contact_info" placeholder="Enter contact info"
+          class="p-2 border rounded focus:ring-2 ring-blue-400 focus:outline-none" />
+  
+        <input type="text" name="address" [(ngModel)]="supplier.address" placeholder="Enter address"
+          class="p-2 border rounded focus:ring-2 ring-blue-400 focus:outline-none" />
+  
+        <input type="number" name="company_id" [(ngModel)]="supplier.company_id" placeholder="Enter company ID"
+          class="p-2 border rounded focus:ring-2 ring-blue-400 focus:outline-none" />
+  
+        
+  
+        <button type="submit"
+          class="w-30 relative overflow-hidden bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white font-semibold py-2 px-4 text-sm rounded-md hover:brightness-110">
+          <span class="relative z-10">Submit</span>
+          <span
+            class="shine absolute top-0 left-[-100%] w-full h-full bg-white/30 transform rotate-12 pointer-events-none group-hover:left-full transition-all duration-1000 ease-in-out"></span>
+        </button>
+  
+        <style>
+          button:hover .shine {
+            animation: shine 1s forwards;
+          }
+  
+          @keyframes shine {
+            0% {
+              left: -100%;
+            }
+  
+            100% {
+              left: 100%;
+            }
+          }
+        </style>
+      </form>
+    </div>
+  
+    <!-- Table -->
+  
+    <div class="bg-white shadow rounded-lg p-4 mt-6 max-w-6xl mx-auto overflow-auto">
+      <h2 class="text-xl font-semibold text-gray-800 mb-2">Company List</h2>
+  
+        <div class="w-full flex justify-end">
+          <form class="">
+            <label for="search">Search:</label>
+            <div class="space-x-3 flex">
+              <li *ngIf="filtersupplier.length === 0">No supplier found.</li>
+              <input type="text" (input)='searchsupplier()' [(ngModel)]="searchQuery" placeholder="Enter supplier Name:">
+            </div>
+          </form>
+        </div>
+  
+      <table class="w-full text-left border-collapse text-sm">
+        <thead>
+          <tr class="bg-gray-100">
+            <th class="p-2">supplier ID</th>
+            <th class="p-2">supplier Name</th>
+            <th class="p-2">contact</th>
+            <th class="p-2">address</th>
+            <th class="p-2">company id</th>
+            <th class="p-2 text-center" colspan="2">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let supplier of suppliers" class="border-t hover:bg-gray-50 transition">
+            <td class="p-2">{{ supplier.supplier_id }}</td>
+            <td class="p-2">{{ supplier.supplier_name }}</td>
+            <td class="p-2">{{ supplier.contact_info }}</td>
+            <td class="p-2">{{ supplier.address }}</td>
+            <td class="p-2">{{ supplier.company_id }}</td>
+            <td class="p-2 text-blue-500 cursor-pointer hover:underline text-center">
+              <a (click)="updatesuppliers(supplier)">Edit</a>
+            </td>
+            <td class="p-2 text-red-500 cursor-pointer hover:underline text-center">
+              <a (click)="deletesupplierss(supplier._id)">Delete</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
