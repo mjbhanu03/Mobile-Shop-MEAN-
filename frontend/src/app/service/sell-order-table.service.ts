@@ -11,9 +11,17 @@ export class SellOrderTableService {
   getsellorder(){
     return this.http.get(this.apiUrl);
 }
+
+
+search(name: any){
+  return this.http.get(`${this.apiUrl}/${name}`)
+}
+
+
 addsellorder(order: any) {
   return this.http.post(`${this.apiUrl}/add`, order);
 }
+
 updatesellorder(id: any, sellorder: any) {
     return this.http.put(`${this.apiUrl}/update/${id}`, sellorder);
   }

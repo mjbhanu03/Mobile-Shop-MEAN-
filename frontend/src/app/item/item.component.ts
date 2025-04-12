@@ -29,6 +29,19 @@ export class ItemComponent implements OnInit {
     })
    }
 
+   search(name:any){
+    if(name == ''){
+      this.loaditem()
+    }else{
+      this.items = []
+      this.itemServ.search(name).subscribe((data:any)=>{
+        this.items = data;
+      })
+    }
+  }
+
+
+
    saveitem(){
     if(this.editing){
       this.itemServ.update(this.editing_id!,this.item).subscribe(()=>{

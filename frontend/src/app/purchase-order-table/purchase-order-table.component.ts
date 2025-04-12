@@ -33,6 +33,18 @@ export class PurchaseOrderTableComponent implements OnInit{
     })
   }
 
+  search(name:any){
+    if(name == ''){
+      this.loadPurchase()
+    }else{
+      this.purchaseOrders = []
+      this.purchaseService.search(name).subscribe((data:any)=>{
+        this.purchaseOrders = data;
+      })
+    }
+  }
+
+
   resetFields(){
   this.purchaseOrder = {
       purchaseOrder: null,

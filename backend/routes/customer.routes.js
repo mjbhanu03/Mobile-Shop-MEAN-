@@ -9,8 +9,8 @@ router.get('', async (req, res) => {
 })
 
 router.get('/:name', async (req, res)=>{
-  const companies = await Company.find({companyName: {$regex: req.params.name, $options: 'i'}})
-  res.json(companies)
+  const customers = await Customer.find({name: {$regex: req.params.name, $options: 'i'}})
+  res.json(customers)
 })
 
 router.post('/add', async (req, res)=> {

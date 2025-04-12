@@ -8,9 +8,13 @@ export class ItemService {
   private apiurl="http://localhost:3000/api/items";
 
   constructor(private http:HttpClient) { }
-  
+
   getitem(){
     return this.http.get(this.apiurl);
+  }
+
+  search(name: any){
+    return this.http.get(`${this.apiurl}/${name}`)
   }
 
   additem(item:any){

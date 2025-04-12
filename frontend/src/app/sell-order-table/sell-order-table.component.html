@@ -1,69 +1,90 @@
-<a href="/" class="text-blue-600 underline text-sm">Go to Home Page</a>
+<div class="min-h-screen bg-gray-50 p-4 text-sm font-inter">
 
-<h2 class="text-2xl font-bold my-4">Sell Order Form</h2>
+  <div class="mb-4">
+    <a href="/" class="text-blue-500 hover:text-blue-700 hover:underline transition">← Home</a>
+  </div>
 
-<form (ngSubmit)="savesellorder()" #form="ngForm" class="flex flex-wrap gap-4 items-end mb-6">
-  <input type="date" name="date" [(ngModel)]="sellorder.orderDate" required
-    class="px-4 py-2 border border-gray-300 rounded-md w-48" placeholder="Enter Date" />
-  <input type="number" name="itemId" [(ngModel)]="sellorder.itemId" required
-    class="px-4 py-2 border border-gray-300 rounded-md w-48" placeholder="Enter Item Id" />
-  <input type="number" name="customerId" [(ngModel)]="sellorder.customerId" required
-    class="px-4 py-2 border border-gray-300 rounded-md w-48" placeholder="Enter Customer Id" />
-  <input type="text" name="shippingAddress" [(ngModel)]="sellorder.shippingAddress" required
-    class="px-4 py-2 border border-gray-300 rounded-md w-48" placeholder="Enter Shipping Address" />
-  <input type="number" name="quantity" [(ngModel)]="sellorder.quantity" required
-    class="px-4 py-2 border border-gray-300 rounded-md w-48" placeholder="Enter Quantity" />
-  <input type="number" name="totalAmount" [(ngModel)]="sellorder.totalAmount" required
-    class="px-4 py-2 border border-gray-300 rounded-md w-48" placeholder="Enter Total Amount" />
+  <div class="w-100 bg-white rounded-lg shadow p-4 max-w-6xl mx-auto space-y-3">
+    <h2 class="text-xl font-semibold text-gray-800">Sell Order Form</h2>
 
-  <button type="submit"
-    class="relative overflow-hidden bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white font-semibold py-2 px-4 text-sm rounded-md group hover:brightness-110 transition duration-300 w-32">
-    <span class="relative z-10">Save</span>
-    <span
-      class="absolute top-0 left-[-100%] w-full h-full bg-white/30 transform rotate-12 pointer-events-none group-hover:animate-shine"></span>
-  </button>
+    <form (ngSubmit)="savesellorder()" #form="ngForm" class="grid grid-cols-1 md:grid-cols-2 gap-2">
+      <input type="date" name="date" [(ngModel)]="sellorder.orderDate" required
+        class="p-2 border rounded focus:ring-2 ring-blue-400 focus:outline-none" placeholder="Enter Date" />
+      <input type="number" name="itemId" [(ngModel)]="sellorder.itemId" required
+        class="p-2 border rounded focus:ring-2 ring-blue-400 focus:outline-none" placeholder="Enter Item Id" />
+      <input type="number" name="customerId" [(ngModel)]="sellorder.customerId" required
+        class="p-2 border rounded focus:ring-2 ring-blue-400 focus:outline-none" placeholder="Enter Customer Id" />
+      <input type="text" name="shippingAddress" [(ngModel)]="sellorder.shippingAddress" required
+        class="p-2 border rounded focus:ring-2 ring-blue-400 focus:outline-none" placeholder="Enter Shipping Address" />
+      <input type="number" name="quantity" [(ngModel)]="sellorder.quantity" required
+        class="p-2 border rounded focus:ring-2 ring-blue-400 focus:outline-none" placeholder="Enter Quantity" />
+      <input type="number" name="totalAmount" [(ngModel)]="sellorder.totalAmount" required
+        class="p-2 border rounded focus:ring-2 ring-blue-400 focus:outline-none" placeholder="Enter Total Amount" />
 
-  <style>
-    @keyframes shine {
-      0% {
-        left: -100%;
-      }
+      <button type="submit"
+        class="w-30 relative overflow-hidden bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white font-semibold py-2 px-4 text-sm rounded-md hover:brightness-110">
+        <span class="relative z-10">Submit</span>
+        <span
+          class="shine absolute top-0 left-[-100%] w-full h-full bg-white/30 transform rotate-12 pointer-events-none group-hover:left-full transition-all duration-1000 ease-in-out"></span>
+      </button>
 
-      100% {
-        left: 100%;
-      }
-    }
+      <style>
+        button:hover .shine {
+          animation: shine 1s forwards;
+        }
 
-    .animate-shine {
-      animation: shine 0.8s ease-in-out forwards;
-    }
-  </style>
-</form>
+        @keyframes shine {
+          0% {
+            left: -100%;
+          }
 
-<h2 class="text-2xl font-bold mb-2">Sell Orders List</h2>
+          100% {
+            left: 100%;
+          }
+        }
+      </style>
+    </form>
+  </div>
 
-<table class="w-full border border-gray-300 rounded-md text-sm">
-  <thead class="bg-gray-100">
-    <tr>
-      <th class="px-4 py-2 text-left">Date</th>
-      <th class="px-4 py-2 text-left">Item Id</th>
-      <th class="px-4 py-2 text-left">Customer Id</th>
-      <th class="px-4 py-2 text-left">Shipping Address</th>
-      <th class="px-4 py-2 text-left">Quantity</th>
-      <th class="px-4 py-2 text-left">Total Amount</th>
-      <th class="px-4 py-2 text-center" colspan="2">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let sellorder of sellorders" class="border-t">
-      <td class="px-4 py-2">{{ sellorder.orderDate }}</td>
-      <td class="px-4 py-2">{{ sellorder.itemId }}</td>
-      <td class="px-4 py-2">{{ sellorder.customerId }}</td>
-      <td class="px-4 py-2">{{ sellorder.shippingAddress }}</td>
-      <td class="px-4 py-2">{{ sellorder.quantity }}</td>
-      <td class="px-4 py-2">{{ sellorder.totalAmount }}</td>
-      <td class="px-4 py-2 text-blue-600 cursor-pointer hover:underline" (click)="editsellorder(sellorder._id, sellorder)">Edit</td>
-      <td class="px-4 py-2 text-red-500 cursor-pointer hover:underline" (click)="deletesellorder(sellorder._id)">Delete</td>
-    </tr>
-  </tbody>
-</table>
+  <div class="bg-white shadow rounded-lg p-4 mt-6 max-w-6xl mx-auto overflow-auto">
+    <h2 class="text-xl font-semibold text-gray-800 mb-2">Sell Orders List</h2>
+
+            <!-- Search Bar -->
+            <div class="w-full flex justify-end mb-2">
+              <form (ngSubmit)="search(searchInput.value)">
+                <label for="search">Search:</label>
+                <div class="space-x-3 flex">
+                  <input type="text" #searchInput placeholder="Enter Item Name:" class="border px-2 py-1 rounded" />
+                  <button type="submit" class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition">Search</button>
+                </div>
+              </form>
+            </div>
+
+
+    <table class="w-full text-left border-collapse text-sm">
+      <thead>
+        <tr class="bg-gray-100">
+          <th class="p-2">Date</th>
+          <th class="p-2">Item Id</th>
+          <th class="p-2">Customer Id</th>
+          <th class="p-2">Shipping Address</th>
+          <th class="p-2">Quantity</th>
+          <th class="p-2">Total Amount</th>
+          <th class="p-2 text-center" colspan="2">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let sellorder of sellorders" class="border-t hover:bg-gray-50 transition">
+          <td class="p-2">{{ sellorder.orderDate }}</td>
+          <td class="p-2">{{ sellorder.itemId }}</td>
+          <td class="p-2">{{ sellorder.customerId }}</td>
+          <td class="p-2">{{ sellorder.shippingAddress }}</td>
+          <td class="p-2">{{ sellorder.quantity }}</td>
+          <td class="p-2">{{ sellorder.totalAmount }}</td>
+          <td class="p-2 text-blue-500 cursor-pointer hover:underline text-center" (click)="editsellorder(sellorder._id, sellorder)">Edit</td>
+          <td class="p-2 text-red-500 cursor-pointer hover:underline text-center" (click)="deletesellorder(sellorder._id)">Delete</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

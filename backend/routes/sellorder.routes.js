@@ -19,6 +19,12 @@ router.put('/update/:id', async (req, res)=> {
   res.status(200).json(order)
 })
 
+router.get('/:name', async (req, res)=>{
+  const items = await Item.find({itemId: {$regex: req.params.name, $options: 'i'}})
+  res.json(items)
+})
+
+
 router.delete('/delete/:id', async (req, res) => {
   await sellOrder.findByIdAndDelete(req.params.id);
   res.status(201).json('Order Deleted')

@@ -12,6 +12,10 @@ export class PurchaseOrderTableService {
     return this.http.get(this.apiUrl)
   }
 
+  search(name: any){
+    return this.http.get(`${this.apiUrl}/${name}`)
+  }
+
   addPurchase(data: any){
     return this.http.post(`${this.apiUrl}/add`, data)
   }
