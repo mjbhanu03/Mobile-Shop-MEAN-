@@ -24,6 +24,7 @@ app.use(cors({
     allowedHeaders: ['Content-Type'], // Only allow certain headers
     origin: '*', // Restrict access to a specific origin
 }));
+app.use('/api/suppliers',require('./routes/supplier.routes'));
 app.use('/api/items',require('./routes/item.routes'));
 app.use('/company',require('./routes/company.routes'));
 app.use('/customer', customer);
